@@ -2,7 +2,7 @@
 {
     public class Admin
     {
-        public int Iddd { get; set; }
+        public int Id { get; set; }
 
         public string FirstName { get; set; }
 
