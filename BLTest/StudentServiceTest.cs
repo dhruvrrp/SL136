@@ -89,10 +89,10 @@
             var studentService = new StudentService(mockRepository.Object);
 
             //// Act
-            studentService.CalculateGpa(string.Empty, null, ref errors);
+            studentService.CalculateGpa(string.Empty, ref errors);
 
             //// Assert
-            Assert.AreEqual(2, errors.Count);
+            Assert.AreEqual(1, errors.Count);
         }
 
         [TestMethod]
@@ -103,11 +103,10 @@
 
             var mockRepository = new Mock<IStudentRepository>();
             var studentService = new StudentService(mockRepository.Object);
-            mockRepository.Setup(x => x.GetEnrollments("testId")).Returns(new List<Enrollment>());
+            mockRepository.Setup(x => x.CalculateGPA("testId", ref errors)).Returns(new List<string>());
 
             //// Act
-            var enrollments = studentService.GetEnrollments("testId", ref errors);
-            var gap = studentService.CalculateGpa("testId", enrollments, ref errors);
+            var gap = studentService.CalculateGpa("testId", ref errors);
 
             //// Assert
             Assert.AreEqual(0, errors.Count);
@@ -122,15 +121,14 @@
 
             var mockRepository = new Mock<IStudentRepository>();
             var studentService = new StudentService(mockRepository.Object);
-            var enrollments = new List<Enrollment>();
-            enrollments.Add(new Enrollment { Grade = "A", GradeValue = 4.0f, ScheduleId = 1, StudentId = "testId" });
-            enrollments.Add(new Enrollment { Grade = "B", GradeValue = 3.0f, ScheduleId = 2, StudentId = "testId" });
-            enrollments.Add(new Enrollment { Grade = "C+", GradeValue = 2.7f, ScheduleId = 3, StudentId = "testId" });
+            var grades = new List<string>();
+            grades.Add("A");
+            grades.Add("B");
+            grades.Add("C+");
 
-            mockRepository.Setup(x => x.GetEnrollments("testId")).Returns(enrollments);
-
+            mockRepository.Setup(x => x.CalculateGPA("testId", ref errors)).Returns(grades);
             //// Act
-            var gap = studentService.CalculateGpa("testId", enrollments, ref errors);
+            var gap = studentService.CalculateGpa("testId", ref errors);
 
             //// Assert
             Assert.AreEqual(0, errors.Count);
