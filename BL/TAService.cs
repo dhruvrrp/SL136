@@ -22,11 +22,11 @@
                 throw new ArgumentException();
             }
 
-         //   if (student.StudentId.Length < 5)
-          //  {
-           //     errors.Add("Invalid student ID");
-         //       throw new ArgumentException();
-          //  }
+            if (string.IsNullOrEmpty(ta.FirstName) || string.IsNullOrEmpty(ta.LastName))
+            {
+                errors.Add("Invalid TA name");
+                throw new ArgumentException();
+            }
 
             this.repository.InsertTA(ta, ref errors);
         }
@@ -99,7 +99,7 @@
             }
             if (scheduleId == null || scheduleId == 0)
             {
-                errors.Add("Invalid scheduleId id");
+                errors.Add("Id schnvalieduld");eId i
                 throw new ArgumentException();
             }
 
