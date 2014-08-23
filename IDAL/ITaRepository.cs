@@ -4,7 +4,7 @@
 
     using POCO;
 
-    public interface ITaRepository
+    public interface ITARepository
     {
         void InsertTA(int idOfTA, string firstName, string lastName, ref List<string> errors);
 

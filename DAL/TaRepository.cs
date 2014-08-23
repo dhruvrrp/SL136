@@ -9,7 +9,7 @@
 
     using POCO;
 
-    public class TaRepository : BaseRepository, ITaRepository
+    public class TARepository : BaseRepository, ITARepository
     {
         private const string InsertNewTaProcedure = "insert_ta";
         private const string DeleteTaProcedure = "delete_ta";
@@ -19,7 +19,7 @@
         private const string RemoveTaFromClassProcedure = "remove_ta_from_class";
         private const string ViewTasForClassProcedure = "view_tas_for_class";
 
-        public void InsertTA(int idOfTA, string firstName, string lastName, ref List<string> errors)
+        public void InsertTA(TA ta, int idOfTA, string firstName, string lastName, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             try
@@ -35,9 +35,9 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 50));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 50));
 
-                adapter.SelectCommand.Parameters["@taID"].Value = idOfTA;
-                adapter.SelectCommand.Parameters["@first_name"].Value = firstName;
-                adapter.SelectCommand.Parameters["@last_name"].Value = lastName;
+                adapter.SelectCommand.Parameters["@taID"].Value = ta.TAId;
+                adapter.SelectCommand.Parameters["@first_name"].Value = ta.FirstName;
+                adapter.SelectCommand.Parameters["@last_name"].Value = ta.LastName;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);

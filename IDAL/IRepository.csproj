@@ -47,7 +47,7 @@
     <Compile Include="IScheduleRepository.cs" />
     <Compile Include="IStudentRepository.cs" />
     <Compile Include="IAuthorizeRepository.cs" />
-    <Compile Include="ITaRepository.cs" />
+    <Compile Include="ITARepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
