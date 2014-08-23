@@ -28,119 +28,82 @@
          //       throw new ArgumentException();
           //  }
 
-            this.repository.InsertTA(student, ref errors);
+            this.repository.InsertTA(ta, ref errors);
         }
 
-        public void UpdateStudent(Student student, ref List<string> errors)
+        public void UpdateTA(TA ta, ref List<string> errors)
         {
-            if (student == null)
+            if (ta == null)
             {
                 errors.Add("Student cannot be null");
                 throw new ArgumentException();
             }
 
-            if (string.IsNullOrEmpty(student.StudentId))
+            if (ta.TAId == null || ta.TAId == 0)
             {
-                errors.Add("Invalid student id");
+                errors.Add("Invalid TA id");
                 throw new ArgumentException();
             }
 
-            if (student.StudentId.Length < 5)
-            {
-                errors.Add("Invalid student id");
-                throw new ArgumentException();
-            }
-
-            this.repository.UpdateStudent(student, ref errors);
+            this.repository.UpdateTA(ta, ref errors);
         }
 
-        public Student GetStudent(string id, ref List<string> errors)
+        public TA GetTA(int id, ref List<string> errors)
         {
-            if (string.IsNullOrEmpty(id))
+            if (id == null || id == 0)
             {
-                errors.Add("Invalid student id");
+                errors.Add("Invalid TA id");
                 throw new ArgumentException();
             }
 
-            return this.repository.GetStudentDetail(id, ref errors);
+            return this.repository.GetTaInfo(id, ref errors);
         }
 
-        public void DeleteStudent(string id, ref List<string> errors)
+        public void DeleteTA(int id, ref List<string> errors)
         {
-            if (string.IsNullOrEmpty(id))
+            if (id == null || id == 0)
             {
-                errors.Add("Invalid student id");
+                errors.Add("Invalid TA id");
                 throw new ArgumentException();
             }
 
-            this.repository.DeleteStudent(id, ref errors);
+            this.repository.DeleteTA(id, ref errors);
         }
 
-        public List<Student> GetStudentList(ref List<string> errors)
+        public List<TA> GetTAsForClass(int scheduleId, ref List<string> errors)
         {
-            return this.repository.GetStudentList(ref errors);
+            return this.repository.ViewTasForClass(scheduleId, ref errors);
+        }
+        public void AddTAtoClass(int TAId, int scheduleId, ref List<string> errors)
+        {
+            if (TAId == null || TAId == 0)
+            {
+                errors.Add("Invalid TA id");
+                throw new ArgumentException();
+            }
+            if (scheduleId == null || scheduleId == 0)
+            {
+                errors.Add("Invalid scheduleId id");
+                throw new ArgumentException();
+            }
+
+            this.repository.AssignTaToClass(TAId, scheduleId, ref errors);
         }
 
-        public void EnrollSchedule(string studentId, int scheduleId, ref List<string> errors)
+        public void RemoveTAFromClass(int TAId, int scheduleId, ref List<string> errors)
         {
-            if (string.IsNullOrEmpty(studentId) || scheduleId < 0)
+            if (TAId == null || TAId == 0)
             {
-                errors.Add("Invalid student id or schedule id");
+                errors.Add("Invalid TA id");
+                throw new ArgumentException();
+            }
+            if (scheduleId == null || scheduleId == 0)
+            {
+                errors.Add("Invalid scheduleId id");
                 throw new ArgumentException();
             }
 
-            this.repository.EnrollSchedule(studentId, scheduleId, ref errors);
-        }
-
-        public void DropEnrolledSchedule(string studentId, int scheduleId, ref List<string> errors)
-        {
-            if (string.IsNullOrEmpty(studentId) || scheduleId < 0)
-            {
-                errors.Add("Invalid student id or schedule id");
-                throw new ArgumentException();
-            }
-
-            this.repository.DropEnrolledSchedule(studentId, scheduleId, ref errors);
-        }
-
-        public List<Enrollment> GetEnrollments(string studentId, ref List<string> errors)
-        {
-            if (string.IsNullOrEmpty(studentId))
-            {
-                errors.Add("Invalid student id");
-                throw new ArgumentException();
-            }
-
-            return this.repository.GetEnrollments(studentId);
-        }
-
-        public float CalculateGpa(string studentId, List<Enrollment> enrollments, ref List<string> errors)
-        {
-            if (string.IsNullOrEmpty(studentId))
-            {
-                errors.Add("Invalid student id");
-                throw new ArgumentException();
-            }
-
-            if (enrollments == null)
-            {
-                errors.Add("Invalid student id");
-                throw new ArgumentException();
-            }
-
-            if (enrollments.Count == 0)
-            {
-                return 0.0f;
-            }
-
-            var sum = 0.0f;
-
-            foreach (var enrollment in enrollments)
-            {
-                sum += enrollment.GradeValue;
-            }
-
-            return sum / enrollments.Count;
+            this.repository.RemoveTaFromClass(TAId, scheduleId, ref errors);
         }
     }
 }
