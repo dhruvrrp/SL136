@@ -114,33 +114,41 @@
             return this.repository.GetEnrollments(studentId);
         }
 
-        public float CalculateGpa(string studentId, List<Enrollment> enrollments, ref List<string> errors)
+        public float CalculateGpa(string studentId, ref List<string> errors)
         {
+            var sum = 0.0f;
             if (string.IsNullOrEmpty(studentId))
             {
                 errors.Add("Invalid student id");
                 throw new ArgumentException();
             }
+            List<string> grades = this.repository.CalculateGPA(studentId, ref errors);
 
-            if (enrollments == null)
+            foreach (var grade in grades)
             {
-                errors.Add("Invalid student id");
-                throw new ArgumentException();                
+                if (grade.Equals("A+") || grade.Equals("A"))
+                    sum += 4;
+                else if (grade.Equals("A-"))
+                    sum += 3.7f;
+                else if (grade.Equals("B+"))
+                    sum += 3.3f;
+                else if (grade.Equals("B"))
+                    sum += 3;
+                else if (grade.Equals("B-"))
+                    sum += 2.7f;
+                else if (grade.Equals("C+"))
+                    sum += 2.3f;
+                else if (grade.Equals("C"))
+                    sum += 2;
+                else if (grade.Equals("C-"))
+                    sum += 1.7f;
+                else if (grade.Equals("D"))
+                    sum += 1;
+                else if (grade.Equals("F"))
+                    sum += 0;         
             }
 
-            if (enrollments.Count == 0)
-            {
-                return 0.0f;
-            }
-
-            var sum = 0.0f;
-
-            foreach (var enrollment in enrollments)
-            {
-                sum += enrollment.GradeValue;
-            }
-
-            return sum / enrollments.Count;
+            return sum / (grades.Count * 4);
         }
     }
 }
