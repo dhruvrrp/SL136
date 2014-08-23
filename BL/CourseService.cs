@@ -14,7 +14,7 @@
             this.repository = repository;
         }
 
-        public void InsertCourse(Course course , ref List<string> errors)
+        public void InsertCourse(Course course, ref List<string> errors)
         {
             if (course == null)
             {
@@ -51,7 +51,6 @@
             }
 
             this.repository.DeleteCourse(id, ref errors);
-            //delete course from other places?
         }
 
         public List<Course> GetCourseList(ref List<string> errors)
