@@ -70,7 +70,7 @@
 
             var mockRepository = new Mock<ITARepository>();
             var taService = new TAService(mockRepository.Object);
-            TA ta = new TA {TAId = 0; };
+            TA ta = new TA {TAId = 0 };
 
             //// Act
             taService.UpdateTA(ta, ref errors);
