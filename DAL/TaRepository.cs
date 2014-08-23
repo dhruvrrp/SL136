@@ -19,7 +19,7 @@
         private const string RemoveTaFromClassProcedure = "remove_ta_from_class";
         private const string ViewTasForClassProcedure = "view_tas_for_class";
 
-        public void InsertTA(TA ta, int idOfTA, string firstName, string lastName, ref List<string> errors)
+        public void InsertTA(TA ta, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             try
@@ -52,7 +52,7 @@
             }
         }
 
-        public void UpdateTaInfomation(int idOfTA, string firstName, string lastName, ref List<string> errors)
+        public void UpdateTA(TA ta, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             try
@@ -65,9 +65,9 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 50));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 50));
 
-                adapter.SelectCommand.Parameters["@taID"].Value = idOfTA;
-                adapter.SelectCommand.Parameters["@first_name"].Value = firstName;
-                adapter.SelectCommand.Parameters["@last_name"].Value = lastName;
+                adapter.SelectCommand.Parameters["@taID"].Value = ta.TAId;
+                adapter.SelectCommand.Parameters["@first_name"].Value = ta.FirstName;
+                adapter.SelectCommand.Parameters["@last_name"].Value = ta.LastName;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -82,7 +82,7 @@
             }
         }
 
-        public void DeleteTa(int id, ref List<string> errors)
+        public void DeleteTA(int id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
 
@@ -114,10 +114,10 @@
             }
         }
 
-        public Tuple<string, string> GetTaInfo(int id, ref List<string> errors)
+        public TA GetTaInfo(int id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            string firstName = string.Empty, lastName = string.Empty;
+            TA ta = new TA();
             try
             {
                 var adapter = new SqlDataAdapter(ViewTaProcedure, conn)
@@ -135,9 +135,10 @@
                 {
                     return null;
                 }
+                ta.TAId = id;
 
-                firstName = dataSet.Tables[0].Rows[0]["first_name"].ToString();
-                lastName = dataSet.Tables[0].Rows[0]["last_name"].ToString();
+                ta.FirstName = dataSet.Tables[0].Rows[0]["first_name"].ToString();
+                ta.LastName = dataSet.Tables[0].Rows[0]["last_name"].ToString();
             }
             catch (Exception e)
             {
@@ -148,7 +149,7 @@
                 conn.Dispose();
             }
 
-            return Tuple.Create(firstName, lastName);
+            return ta;
         }
 
         public void AssignTaToClass(int idOfTA, int scheduleID, ref List<string> errors)
@@ -207,11 +208,10 @@
             }
         }
 
-        public List<Tuple<string, string>> ViewTasForClass(int scheduleId, ref List<string> errors)
+        public List<TA> ViewTasForClass(int scheduleId, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            var listOfTAs = new List<Tuple<string, string>>();
-            string firstName = string.Empty, lastName = string.Empty;
+            var listOfTAs = new List<TA>();
             try
             {
                 var adapter = new SqlDataAdapter(ViewTasForClassProcedure, conn)
@@ -238,10 +238,12 @@
 
                 for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
                 {
-                    firstName = dataSet.Tables[0].Rows[0]["first_name"].ToString();
-                    lastName = dataSet.Tables[0].Rows[0]["last_name"].ToString();
+                    TA ta = new TA();
+                    ta.TAId = (int)dataSet.Tables[0].Rows[0]["ta_id"];
+                    ta.FirstName = dataSet.Tables[0].Rows[0]["first_name"].ToString();
+                    ta.LastName = dataSet.Tables[0].Rows[0]["last_name"].ToString();
 
-                    listOfTAs.Add(Tuple.Create(firstName, lastName));
+                    listOfTAs.Add(ta);
                 }
             }
             catch (Exception e)
