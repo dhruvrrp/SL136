@@ -59,5 +59,11 @@
         {
             this.service.DropEnrolledSchedule(studentId, scheduleId, ref this.errors);
         }
+
+        [HttpGet]
+        public float GetStudentGPA(string id)
+        {
+            return this.service.CalculateGpa(id, ref this.errors);
+        }
     }
 }
