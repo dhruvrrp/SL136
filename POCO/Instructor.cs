@@ -4,7 +4,7 @@
 
     public class Instructor
     {
-        public string InstructorId { get; set; }
+        public int InstructorId { get; set; }
 
         public string FirstName { get; set; }
 

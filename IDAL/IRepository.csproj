@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="ICourseRepository.cs" />
+    <Compile Include="IInstructorRepository.cs" />
     <Compile Include="IScheduleRepository.cs" />
     <Compile Include="IStudentRepository.cs" />
     <Compile Include="IAuthorizeRepository.cs" />
