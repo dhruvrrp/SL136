@@ -39,7 +39,7 @@
                 throw new ArgumentException();
             }
 
-            if (ta.TAId == null || ta.TAId == 0)
+            if (ta.TAId == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
@@ -50,7 +50,7 @@
 
         public TA GetTA(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
@@ -61,7 +61,7 @@
 
         public void DeleteTA(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
@@ -76,12 +76,12 @@
         }
         public void AddTAtoClass(int TAId, int scheduleId, ref List<string> errors)
         {
-            if (TAId == null || TAId == 0)
+            if (TAId == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
             }
-            if (scheduleId == null || scheduleId == 0)
+            if (scheduleId == 0)
             {
                 errors.Add("Invalid scheduleId id");
                 throw new ArgumentException();
@@ -92,12 +92,12 @@
 
         public void RemoveTAFromClass(int TAId, int scheduleId, ref List<string> errors)
         {
-            if (TAId == null || TAId == 0)
+            if (TAId == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
             }
-            if (scheduleId == null || scheduleId == 0)
+            if (scheduleId == 0)
             {
                 errors.Add("Invalid scheduleId id");
                 throw new ArgumentException();

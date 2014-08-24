@@ -11,14 +11,36 @@
 
     public class CourseController : ApiController
     {
+        private readonly CourseService service = new CourseService(new CourseRepository());
+
+        private List<string> errors = new List<string>();
+
         [HttpGet]
         public List<Course> GetCourseList()
         {
-            var service = new CourseService(new CourseRepository());
-            var errors = new List<string>();
-
             //// we could log the errors here if there are any...
             return service.GetCourseList(ref errors);
+        }
+
+        [HttpPost]
+        public string InsertCourse(Course course)
+        {
+            this.service.InsertCourse(course, ref this.errors);
+            return this.errors.Count == 0 ? "ok" : "Error occurred";
+        }
+
+        [HttpPost]
+        public string UpdateCourse(Course course)
+        {
+            this.service.UpdateCourse(course, ref this.errors);
+            return this.errors.Count == 0 ? "ok" : "Error occurred";
+        }
+
+        [HttpPost]
+        public string DeleteCourse(string id)
+        {
+            this.service.DeleteCourse(id, ref this.errors);
+            return this.errors.Count == 0 ? "ok" : "Error occurred";
         }
 
         //// you can add more [HttpGet] and [HttpPost] methods as you need
