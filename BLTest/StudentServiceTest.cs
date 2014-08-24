@@ -132,7 +132,7 @@
 
             //// Assert
             Assert.AreEqual(0, errors.Count);
-            Assert.AreEqual(true, gap > 3.2f && gap < 3.3f);
+            Assert.AreEqual(true, ((gap > 3.0f) && (gap < 3.2f)));
         }
     }
 }

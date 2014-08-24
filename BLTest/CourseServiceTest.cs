@@ -104,7 +104,6 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void InsertCourseSuccessTest()
         {
             //// Arrange
@@ -120,7 +119,7 @@
             courseService.InsertCourse(course, ref errors);
             
             //// Assert
-            Assert.AreEqual(1, errors.Count);
+            Assert.AreEqual(0, errors.Count);
         }
 
         [TestMethod]

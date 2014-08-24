@@ -148,7 +148,14 @@
                     sum += 0;         
             }
 
-            return sum / (grades.Count * 4);
+            if (grades.Count > 0)
+            {
+                return sum / (grades.Count);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
