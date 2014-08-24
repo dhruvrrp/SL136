@@ -111,15 +111,15 @@
             var errors = new List<string>();
             var mockRepository = new Mock<ICourseRepository>();
             var courseService = new CourseService(mockRepository.Object);
-
+            
             var course = new Course();
             course.CourseId = "3";
 
             //// Act
             courseService.InsertCourse(course, ref errors);
+            
             //// Assert
-
-            Assert.AreEqual(0, errors.Count);
+            Assert.AreEqual(1, errors.Count);
         }
 
         [TestMethod]
