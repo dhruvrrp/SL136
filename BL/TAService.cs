@@ -35,7 +35,7 @@
         {
             if (ta == null)
             {
-                errors.Add("Student cannot be null");
+                errors.Add("Ta cannot be null");
                 throw new ArgumentException();
             }
 
