@@ -19,6 +19,7 @@
         private const string InsertStudentScheduleProcedure = "spInsertStudentSchedule";
         private const string DeleteStudentScheduleProcedure = "spDeleteStudentSchedule";
         private const string CalculateStudentGPA = "calculate_gpa";
+        private const string GetEnrolledClasses = "spGetEnrolledClasses";
 
         public void InsertStudent(Student student, ref List<string> errors)
         {
@@ -372,9 +373,53 @@
             return gradeList;
         }
 
-        public List<Enrollment> GetEnrollments(string studentId)
+        public List<Enrollment> GetEnrollments(string studentId, ref List<string> errors)
         {
-            //// Not implemented yet. 136 TODO:
+            var conn = new SqlConnection(ConnectionString);
+
+            var enrollmentList = new List<POCO.Enrollment>();
+          
+            try
+            {
+                var adapter = new SqlDataAdapter(GetEnrolledClasses, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@student_id", SqlDbType.VarChar, 20));
+
+                adapter.SelectCommand.Parameters["@student_id"].Value = studentId;
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    var enrollment = new Enrollment();
+                    enrollment.StudentId = dataSet.Tables[0].Rows[i]["student_id"].ToString();
+                    enrollment.ScheduleId = (int) dataSet.Tables[0].Rows[i]["schedule_id"];
+                    enrollment.Grade = dataSet.Tables[0].Rows[i]["grade"].ToString();
+                    enrollmentList.Add(enrollment);
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+            return enrollmentList;
+
             throw new Exception();
         }
     }

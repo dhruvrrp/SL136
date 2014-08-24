@@ -11,7 +11,7 @@ namespace IRepository
 
         void UpdateAdmin(Admin ta, ref List<string> errors);
 
-        void DeleteAdmin(Admin id, ref List<string> errors);
+        void DeleteAdmin(int admin_id, ref List<string> errors);
 
         Admin GetAdminInfo(int admin_id, ref List<string> errors);
 

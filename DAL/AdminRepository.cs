@@ -88,7 +88,7 @@
             }
         }
 
-        void DeleteAdmin(Admin admin, ref List<string> errors)
+        void DeleteAdmin(int admin_id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
 
@@ -105,7 +105,7 @@
                 };
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@admin_id", SqlDbType.Int));
 
-                adapter.SelectCommand.Parameters["@admin_id"].Value = admin.Id;
+                adapter.SelectCommand.Parameters["@admin_id"].Value = admin_id;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
