@@ -99,7 +99,7 @@
             }
             if (scheduleId == null || scheduleId == 0)
             {
-                errors.Add("Id schnvalieduld");eId i
+                errors.Add("Invalid scheduleId id");
                 throw new ArgumentException();
             }
 
