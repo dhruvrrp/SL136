@@ -62,6 +62,7 @@
     <Compile Include="AuthorizeService.cs" />
     <Compile Include="AdminService.cs" />
     <Compile Include="CourseService.cs" />
+    <Compile Include="InstructorService.cs" />
     <Compile Include="ScheduleService.cs" />
     <Compile Include="StudentService.cs" />
     <Compile Include="ErrorLog\AsynchLog.cs" />

@@ -114,6 +114,7 @@
             
             var course = new Course();
             course.CourseId = "3";
+            System.Diagnostics.Debug.WriteLine("test");
 
             //// Act
             courseService.InsertCourse(course, ref errors);

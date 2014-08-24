@@ -10,7 +10,7 @@
     using Service;
 
     [TestClass]
-    public class AdminServiceTest
+    public class TAServiceTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
