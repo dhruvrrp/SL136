@@ -4,10 +4,12 @@
     using System.Collections.Generic;
     using IRepository;
     using POCO;
+    using System.Text.RegularExpressions;
 
     public class CourseService
     {
         private readonly ICourseRepository repository;
+        Regex isNumeric = new Regex(@"^[0-9]*$");
 
         public CourseService(ICourseRepository repository)
         {
@@ -16,9 +18,21 @@
 
         public void InsertCourse(Course course, ref List<string> errors)
         {
-            if (course == null)
+           if (course == null)
             {
                 errors.Add("Course cannot be null");
+                throw new ArgumentException();
+            }
+
+            if (string.IsNullOrEmpty(course.CourseId))
+            {
+                errors.Add("Invalid course id");
+                throw new ArgumentException();
+            }
+
+            if (!isNumeric.IsMatch(course.CourseId))
+            {
+               errors.Add("Invalid course id");
                 throw new ArgumentException();
             }
 
@@ -39,12 +53,24 @@
                 throw new ArgumentException();
             }
 
+            if (!isNumeric.IsMatch(course.CourseId))
+            {
+                errors.Add("Invalid course id");
+                throw new ArgumentException();
+            }
+
             this.repository.UpdateCourse(course, ref errors);
         }
 
         public void DeleteCourse(string id, ref List<string> errors)
         {
             if (string.IsNullOrEmpty(id))
+            {
+                errors.Add("Invalid course id");
+                throw new ArgumentException();
+            }
+
+            if (!isNumeric.IsMatch(id))
             {
                 errors.Add("Invalid course id");
                 throw new ArgumentException();
