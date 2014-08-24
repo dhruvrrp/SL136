@@ -86,6 +86,7 @@
         public void DeleteCourse(string id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
+
             try
             {
                 var adapter = new SqlDataAdapter(DeleteCourseProcedure, conn)
