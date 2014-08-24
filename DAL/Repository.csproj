@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminRepository.cs" />
     <Compile Include="AuthorizeRepository.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="CourseRepository.cs" />

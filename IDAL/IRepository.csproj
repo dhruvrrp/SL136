@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAdminRepository.cs" />
     <Compile Include="ICourseRepository.cs" />
     <Compile Include="IScheduleRepository.cs" />
     <Compile Include="IStudentRepository.cs" />
