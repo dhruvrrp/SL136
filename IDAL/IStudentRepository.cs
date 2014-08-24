@@ -20,7 +20,7 @@
 
         void DropEnrolledSchedule(string studentId, int scheduleId, ref List<string> errors);
 
-        List<Enrollment> GetEnrollments(string studentId);
+        List<Enrollment> GetEnrollments(string studentId, ref List<string> errors);
 
         List<string> CalculateGPA(string studentId, ref List<string> errors);
     }

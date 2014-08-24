@@ -16,7 +16,7 @@
         private const string UpdateAdminProcedure = "spUpdateAdmin";
         private const string ViewAdminProcedure = "spReadAdmin";
 
-        void InsertAdmin(Admin admin, ref List<string> errors)
+        public void InsertAdmin(Admin admin, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             try
@@ -53,7 +53,7 @@
             }
         }
 
-        void UpdateAdmin(Admin admin, ref List<string> errors)
+        public void UpdateAdmin(Admin admin, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
             try
@@ -88,7 +88,7 @@
             }
         }
 
-        void DeleteAdmin(int admin_id, ref List<string> errors)
+        public void DeleteAdmin(int admin_id, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
 
@@ -120,7 +120,7 @@
             }
         }
 
-        Admin GetAdminInfo(int admin_id, ref List<string> errors)
+        public Admin GetAdminInfo(int admin_id, ref List<string> errors)
         {
 
             var conn = new SqlConnection(ConnectionString);
