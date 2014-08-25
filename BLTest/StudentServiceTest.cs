@@ -47,6 +47,41 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
+        public void InsertStudentErrorTest3()
+        {
+            //// Arranage
+            var errors = new List<string>();
+            var mockRepository = new Mock<IStudentRepository>();
+            var studentService = new StudentService(mockRepository.Object);
+            var student = new Student { StudentId = "155555" };
+            student.Email = "incorrectFormat";
+
+            //// Act
+            studentService.InsertStudent(student, ref errors);
+
+            //// Assert
+            Assert.AreEqual(1, errors.Count);
+        }
+
+        [TestMethod]
+        public void InsertStudentSuccessTest()
+        {
+            //// Arranage
+            var errors = new List<string>();
+            var mockRepository = new Mock<IStudentRepository>();
+            var studentService = new StudentService(mockRepository.Object);
+            var student = new Student { StudentId = "125553" };
+            student.Email = "correct@gmail.com";
+
+            //// Act
+            studentService.InsertStudent(student, ref errors);
+
+            //// Assert
+            Assert.AreEqual(0, errors.Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void StudentErrorTest()
         {
             //// Arranage
