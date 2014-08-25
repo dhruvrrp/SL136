@@ -2,12 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
     using IRepository;
     using POCO;
 
     public class StudentService
     {
         private readonly IStudentRepository repository;
+        private Regex emailCheck = new Regex(@"^([a-zA-z0-9_\-\.]+)@((\[0-9]{1,3}" + 
+            @"\.[0-9]{1-3}\-[0-9]{1,3}\-)|(([a-zA-Z0-9\-]+\" +
+            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
 
         public StudentService(IStudentRepository repository)
         {
@@ -23,6 +27,12 @@
             }
 
             if (student.StudentId.Length < 5)
+            {
+                errors.Add("Invalid student ID");
+                throw new ArgumentException();
+            }
+
+            if (!emailCheck.IsMatch(student.Email))
             {
                 errors.Add("Invalid student ID");
                 throw new ArgumentException();
@@ -48,6 +58,12 @@
             if (student.StudentId.Length < 5)
             {
                 errors.Add("Invalid student id");
+                throw new ArgumentException();
+            }
+
+            if (!emailCheck.IsMatch(student.Email))
+            {
+                errors.Add("Invalid student ID");
                 throw new ArgumentException();
             }
 
