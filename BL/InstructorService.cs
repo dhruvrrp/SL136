@@ -72,13 +72,13 @@
 
         public void AssignInstructorToClass(int instructor_id, int schedule_id, ref List<string> errors)
         {
-            if (instructor_id == null)
+            if (instructor_id == 0)
             {
                 errors.Add("Instructor cannot be null");
                 throw new ArgumentException();
             }
 
-            if (schedule_id == null)
+            if (schedule_id == 0)
             {
                 errors.Add("Schedule id cannot be null");
                 throw new ArgumentException();
