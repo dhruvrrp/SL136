@@ -49,15 +49,15 @@
         }
 
         [HttpPost]
-        public void AddTAtoClass(int TAId, int scheduleId)
+        public void AddTAtoClass(int idOfTA, int scheduleId)
         {
-            this.service.AddTAtoClass(TAId, scheduleId, ref this.errors);
+            this.service.AddTAtoClass(idOfTA, scheduleId, ref this.errors);
         }
 
         [HttpPost]
-        public void RemoveTAFromCLass(int TAId, int scheduleId)
+        public void RemoveTAFromCLass(int idOfTA, int scheduleId)
         {
-            this.service.RemoveTAFromClass(TAId, scheduleId, ref this.errors);
+            this.service.RemoveTAFromClass(idOfTA, scheduleId, ref this.errors);
         }
     }
 }

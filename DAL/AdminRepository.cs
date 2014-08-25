@@ -74,7 +74,6 @@
                 adapter.SelectCommand.Parameters["@email"].Value = admin.Email;
                 adapter.SelectCommand.Parameters["@password"].Value = admin.Password;
                 
-
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
             }
@@ -122,7 +121,6 @@
 
         public Admin GetAdminInfo(int admin_id, ref List<string> errors)
         {
-
             var conn = new SqlConnection(ConnectionString);
 
             Admin admin = new Admin();
@@ -144,6 +142,7 @@
                 {
                     return null;
                 }
+
                 admin.Id = admin_id;
 
                 admin.FirstName = dataSet.Tables[0].Rows[0]["first_name"].ToString();

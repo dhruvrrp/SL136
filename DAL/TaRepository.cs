@@ -135,6 +135,7 @@
                 {
                     return null;
                 }
+
                 ta.TAId = id;
 
                 ta.FirstName = dataSet.Tables[0].Rows[0]["first_name"].ToString();

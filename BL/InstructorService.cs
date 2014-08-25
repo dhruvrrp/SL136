@@ -14,43 +14,43 @@
             this.repository = repository;
         }
 
-        public void InsertInstructor(Instructor Instructor, ref List<string> errors)
+        public void InsertInstructor(Instructor instructor, ref List<string> errors)
         {
-            if (Instructor == null)
+            if (instructor == null)
             {
                 errors.Add("Instructor cannot be null");
                 throw new ArgumentException();
             }
 
-            if (string.IsNullOrEmpty(Instructor.FirstName) || string.IsNullOrEmpty(Instructor.LastName))
+            if (string.IsNullOrEmpty(instructor.FirstName) || string.IsNullOrEmpty(instructor.LastName))
             {
                 errors.Add("Invalid Instructor name");
                 throw new ArgumentException();
             }
 
-            this.repository.InsertInstructor(Instructor, ref errors);
+            this.repository.InsertInstructor(instructor, ref errors);
         }
 
-        public void UpdateInstructor(Instructor Instructor, ref List<string> errors)
+        public void UpdateInstructor(Instructor instructor, ref List<string> errors)
         {
-            if (Instructor == null)
+            if (instructor == null)
             {
                 errors.Add("Instructor cannot be null");
                 throw new ArgumentException();
             }
 
-            if (Instructor.InstructorId == null || Instructor.InstructorId == 0)
+            if (instructor.InstructorId == 0)
             {
                 errors.Add("Invalid Instructor id");
                 throw new ArgumentException();
             }
 
-            this.repository.UpdateInstructor(Instructor, ref errors);
+            this.repository.UpdateInstructor(instructor, ref errors);
         }
 
         public Instructor GetInstructor(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid Instructor id");
                 throw new ArgumentException();
@@ -61,7 +61,7 @@
 
         public void DeleteInstructor(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid Instructor id");
                 throw new ArgumentException();
@@ -69,10 +69,5 @@
 
             this.repository.DeleteInstructor(id, ref errors);
         }
-
-
-
-
-
     }
 }

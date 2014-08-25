@@ -19,7 +19,7 @@
         public List<Course> GetCourseList()
         {
             //// we could log the errors here if there are any...
-            return service.GetCourseList(ref errors);
+            return this.service.GetCourseList(ref this.errors);
         }
 
         [HttpPost]

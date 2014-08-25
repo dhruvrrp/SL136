@@ -19,10 +19,10 @@
             //// Arrange
             var errors = new List<string>();
             var mockRepository = new Mock<IInstructorRepository>();
-            var InstructorService = new InstructorService(mockRepository.Object);
+            var instructorService = new InstructorService(mockRepository.Object);
 
             //// Act
-            InstructorService.InsertInstructor(null, ref errors);
+            instructorService.InsertInstructor(null, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -35,11 +35,11 @@
             //// Arranage
             var errors = new List<string>();
             var mockRepository = new Mock<IInstructorRepository>();
-            var InstructorService = new InstructorService(mockRepository.Object);
-            var Instructor = new Instructor { FirstName = string.Empty };
+            var instructorService = new InstructorService(mockRepository.Object);
+            var instructor = new Instructor { FirstName = string.Empty };
 
             //// Act
-            InstructorService.InsertInstructor(Instructor, ref errors);
+            instructorService.InsertInstructor(instructor, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -52,10 +52,10 @@
             //// Arranage
             var errors = new List<string>();
             var mockRepository = new Mock<IInstructorRepository>();
-            var InstructorService = new InstructorService(mockRepository.Object);
+            var instructorService = new InstructorService(mockRepository.Object);
 
             //// Act
-            InstructorService.GetInstructor(0, ref errors);
+            instructorService.GetInstructor(0, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -69,11 +69,11 @@
             var errors = new List<string>();
 
             var mockRepository = new Mock<IInstructorRepository>();
-            var InstructorService = new InstructorService(mockRepository.Object);
-            Instructor Instructor = new Instructor { InstructorId = 0 };
+            var instructorService = new InstructorService(mockRepository.Object);
+            Instructor instructor = new Instructor { InstructorId = 0 };
 
             //// Act
-            InstructorService.UpdateInstructor(Instructor, ref errors);
+            instructorService.UpdateInstructor(instructor, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -87,11 +87,11 @@
             var errors = new List<string>();
 
             var mockRepository = new Mock<IInstructorRepository>();
-            var InstructorService = new InstructorService(mockRepository.Object);
-            Instructor Instructor = new Instructor();
+            var instructorService = new InstructorService(mockRepository.Object);
+            Instructor instructor = new Instructor();
 
             //// Act
-            InstructorService.UpdateInstructor(Instructor, ref errors);
+            instructorService.UpdateInstructor(instructor, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -105,14 +105,13 @@
             var errors = new List<string>();
 
             var mockRepository = new Mock<IInstructorRepository>();
-            var InstructorService = new InstructorService(mockRepository.Object);
+            var instructorService = new InstructorService(mockRepository.Object);
 
             //// Act
-            InstructorService.DeleteInstructor(0, ref errors);
+            instructorService.DeleteInstructor(0, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
         }
-
     }
 }

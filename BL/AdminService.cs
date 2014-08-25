@@ -39,7 +39,7 @@
                 throw new ArgumentException();
             }
 
-            if (admin.Id == null || admin.Id == 0)
+            if (admin.Id == 0)
             {
                 errors.Add("Invalid Admin id");
                 throw new ArgumentException();
@@ -50,7 +50,7 @@
 
         public Admin GetAdmin(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid Admin id");
                 throw new ArgumentException();
@@ -61,7 +61,7 @@
 
         public void DeleteAdmin(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid Admin id");
                 throw new ArgumentException();

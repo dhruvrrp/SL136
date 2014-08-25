@@ -1,15 +1,15 @@
 ﻿namespace Service
 {
-    using System;
+    using System;    
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
     using IRepository;
     using POCO;
-    using System.Text.RegularExpressions;
 
     public class CourseService
     {
         private readonly ICourseRepository repository;
-        Regex isNumeric = new Regex(@"^[0-9]*$");
+        private Regex isNumeric = new Regex(@"^[0-9]*$");
 
         public CourseService(ICourseRepository repository)
         {
@@ -30,7 +30,7 @@
                 throw new ArgumentException();
             }
 
-            if (!isNumeric.IsMatch(course.CourseId))
+            if (!this.isNumeric.IsMatch(course.CourseId))
             {
                errors.Add("Invalid course id");
                 throw new ArgumentException();
@@ -53,7 +53,7 @@
                 throw new ArgumentException();
             }
 
-            if (!isNumeric.IsMatch(course.CourseId))
+            if (!this.isNumeric.IsMatch(course.CourseId))
             {
                 errors.Add("Invalid course id");
                 throw new ArgumentException();
@@ -70,7 +70,7 @@
                 throw new ArgumentException();
             }
 
-            if (!isNumeric.IsMatch(id))
+            if (!this.isNumeric.IsMatch(id))
             {
                 errors.Add("Invalid course id");
                 throw new ArgumentException();

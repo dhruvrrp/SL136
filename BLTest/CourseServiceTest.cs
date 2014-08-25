@@ -56,7 +56,7 @@
             var courseService = new CourseService(mockRepository.Object);
 
             var course = new Course();
-            course.CourseId = "";
+            course.CourseId = string.Empty;
 
             //// Act
             courseService.InsertCourse(course, ref errors);

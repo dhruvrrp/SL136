@@ -404,7 +404,7 @@
                 {
                     var enrollment = new Enrollment();
                     enrollment.StudentId = dataSet.Tables[0].Rows[i]["student_id"].ToString();
-                    enrollment.ScheduleId = (int) dataSet.Tables[0].Rows[i]["schedule_id"];
+                    enrollment.ScheduleId = (int)dataSet.Tables[0].Rows[i]["schedule_id"];
                     enrollment.Grade = dataSet.Tables[0].Rows[i]["grade"].ToString();
                     enrollmentList.Add(enrollment);
                 }
