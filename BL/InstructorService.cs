@@ -69,5 +69,22 @@
 
             this.repository.DeleteInstructor(id, ref errors);
         }
+
+        public void AssignInstructorToClass(int instructor_id, int schedule_id, ref List<string> errors)
+        {
+            if (instructor_id == null)
+            {
+                errors.Add("Instructor cannot be null");
+                throw new ArgumentException();
+            }
+
+            if (schedule_id == null)
+            {
+                errors.Add("Schedule id cannot be null");
+                throw new ArgumentException();
+            }
+
+            this.repository.AssignInstructorToClass(instructor_id, schedule_id, ref errors);
+        }
     }
 }
