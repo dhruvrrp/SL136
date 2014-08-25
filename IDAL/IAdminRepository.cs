@@ -1,9 +1,8 @@
-﻿
-namespace IRepository
-{
-    using POCO;
-
+﻿namespace IRepository
+{    
     using System.Collections.Generic;
+
+    using POCO;
 
     public interface IAdminRepository
     {
@@ -14,6 +13,5 @@ namespace IRepository
         void DeleteAdmin(int admin_id, ref List<string> errors);
 
         Admin GetAdminInfo(int admin_id, ref List<string> errors);
-
     }
 }

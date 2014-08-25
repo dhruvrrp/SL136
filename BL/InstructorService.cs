@@ -14,38 +14,38 @@
             this.repository = repository;
         }
 
-        public void InsertInstructor(Instructor Instructor, ref List<string> errors)
+        public void InsertInstructor(Instructor instructor, ref List<string> errors)
         {
-            if (Instructor == null)
+            if (instructor == null)
             {
                 errors.Add("Instructor cannot be null");
                 throw new ArgumentException();
             }
 
-            if (string.IsNullOrEmpty(Instructor.FirstName) || string.IsNullOrEmpty(Instructor.LastName))
+            if (string.IsNullOrEmpty(instructor.FirstName) || string.IsNullOrEmpty(instructor.LastName))
             {
                 errors.Add("Invalid Instructor name");
                 throw new ArgumentException();
             }
 
-            this.repository.InsertInstructor(Instructor, ref errors);
+            this.repository.InsertInstructor(instructor, ref errors);
         }
 
-        public void UpdateInstructor(Instructor Instructor, ref List<string> errors)
+        public void UpdateInstructor(Instructor instructor, ref List<string> errors)
         {
-            if (Instructor == null)
+            if (instructor == null)
             {
                 errors.Add("Instructor cannot be null");
                 throw new ArgumentException();
             }
 
-            if (Instructor.InstructorId == null || Instructor.InstructorId == 0)
+            if (instructor.InstructorId == 0)
             {
                 errors.Add("Invalid Instructor id");
                 throw new ArgumentException();
             }
 
-            this.repository.UpdateInstructor(Instructor, ref errors);
+            this.repository.UpdateInstructor(instructor, ref errors);
         }
 
         public Instructor GetInstructor(int id, ref List<string> errors)
@@ -69,25 +69,5 @@
 
             this.repository.DeleteInstructor(id, ref errors);
         }
-
-        public void AssignInstructorToClass(int instructor_id, int schedule_id, ref List<string> errors)
-        {
-            if (instructor_id == 0)
-            {
-                errors.Add("Invalid Instructor id");
-                throw new ArgumentException();
-            }
-
-            if (schedule_id == 0)
-            {
-                errors.Add("Invalid Instructor id");
-                throw new ArgumentException();
-            }
-
-            this.repository.AssignInstructorToClass(instructor_id, schedule_id, ref errors);
-        }
-
-
-
     }
 }

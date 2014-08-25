@@ -122,33 +122,61 @@
                 errors.Add("Invalid student id");
                 throw new ArgumentException();
             }
+
             List<string> grades = this.repository.CalculateGPA(studentId, ref errors);
 
             foreach (var grade in grades)
             {
                 if (grade.Equals("A+") || grade.Equals("A"))
+                {
                     sum += 4;
+                }
                 else if (grade.Equals("A-"))
+                {
                     sum += 3.7f;
+                }
                 else if (grade.Equals("B+"))
+                {
                     sum += 3.3f;
+                }
                 else if (grade.Equals("B"))
+                {
                     sum += 3;
+                }
                 else if (grade.Equals("B-"))
+                {
                     sum += 2.7f;
+                }
                 else if (grade.Equals("C+"))
+                {
                     sum += 2.3f;
+                }
                 else if (grade.Equals("C"))
+                {
                     sum += 2;
+                }
                 else if (grade.Equals("C-"))
+                {
                     sum += 1.7f;
+                }
                 else if (grade.Equals("D"))
+                {
                     sum += 1;
+                }
                 else if (grade.Equals("F"))
-                    sum += 0;         
+                {
+                    sum += 0;
+                }
             }
 
-            return sum / (grades.Count * 4);
+            if (grades.Count > 0)
+            {
+                return sum / grades.Count;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

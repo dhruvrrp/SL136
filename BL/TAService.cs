@@ -39,7 +39,7 @@
                 throw new ArgumentException();
             }
 
-            if (ta.TAId == null || ta.TAId == 0)
+            if (ta.TAId == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
@@ -50,7 +50,7 @@
 
         public TA GetTA(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
@@ -61,7 +61,7 @@
 
         public void DeleteTA(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
@@ -74,36 +74,39 @@
         {
             return this.repository.ViewTasForClass(scheduleId, ref errors);
         }
-        public void AddTAtoClass(int TAId, int scheduleId, ref List<string> errors)
+
+        public void AddTAtoClass(int idOfTA, int scheduleId, ref List<string> errors)
         {
-            if (TAId == null || TAId == 0)
+            if (idOfTA == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
             }
-            if (scheduleId == null || scheduleId == 0)
+
+            if (scheduleId == 0)
             {
                 errors.Add("Invalid scheduleId id");
                 throw new ArgumentException();
             }
 
-            this.repository.AssignTaToClass(TAId, scheduleId, ref errors);
+            this.repository.AssignTaToClass(idOfTA, scheduleId, ref errors);
         }
 
-        public void RemoveTAFromClass(int TAId, int scheduleId, ref List<string> errors)
+        public void RemoveTAFromClass(int idOfTA, int scheduleId, ref List<string> errors)
         {
-            if (TAId == null || TAId == 0)
+            if (idOfTA == 0)
             {
                 errors.Add("Invalid TA id");
                 throw new ArgumentException();
             }
-            if (scheduleId == null || scheduleId == 0)
+
+            if (scheduleId == 0)
             {
                 errors.Add("Invalid scheduleId id");
                 throw new ArgumentException();
             }
 
-            this.repository.RemoveTaFromClass(TAId, scheduleId, ref errors);
+            this.repository.RemoveTaFromClass(idOfTA, scheduleId, ref errors);
         }
     }
 }

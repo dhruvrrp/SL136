@@ -39,7 +39,6 @@
                 adapter.SelectCommand.Parameters["@last_name"].Value = instructor.LastName;
                 adapter.SelectCommand.Parameters["@title"].Value = instructor.Title;
 
-
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
             }
