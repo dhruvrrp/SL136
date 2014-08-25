@@ -1,24 +1,45 @@
 ﻿namespace WebApi136.Controllers
 {
+    using System.Collections.Generic;
     using System.Web.Http;
 
     using POCO;
 
+    using Repository;
+
+    using Service;
+
     public class AdminController : ApiController
     {
-        [HttpGet]
-        public Admin GetAdminInfo(int adminId)
+        private readonly AdminService service = new AdminService(new AdminRepository());
+
+        private List<string> errors = new List<string>();
+
+        [HttpPost]
+        public Admin GetAdmin(int id)
         {
-            //// 136 TODO: get the admin info 
-            //// for now, returning the hard-coded value
-            return new Admin() { FirstName = "Isaac", LastName = "Chu", Id = adminId };
+            return this.service.GetAdmin(id, ref this.errors);
         }
 
         [HttpPost]
-        public string UpdateAdminInfo(Admin admin)
+        public string InsertAdmin(Admin admin)
         {
-            //// 136 TODO : update admin info here...
-            return "updated not yet implemented";
+            this.service.InsertAdmin(admin, ref this.errors);
+            return this.errors.Count == 0 ? "ok" : "Error occurred";
+        }
+
+        [HttpPost]
+        public string UpdateAdmin(Admin admin)
+        {
+            this.service.UpdateAdmin(admin, ref this.errors);
+            return this.errors.Count == 0 ? "ok" : "Error occurred";
+        }
+
+        [HttpPost]
+        public string DeleteAdmin(int id)
+        {
+            this.service.DeleteAdmin(id, ref this.errors);
+            return this.errors.Count == 0 ? "ok" : "Error occurred";
         }
     }
 }

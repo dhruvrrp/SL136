@@ -50,7 +50,7 @@
 
         public Instructor GetInstructor(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid Instructor id");
                 throw new ArgumentException();
@@ -61,7 +61,7 @@
 
         public void DeleteInstructor(int id, ref List<string> errors)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 errors.Add("Invalid Instructor id");
                 throw new ArgumentException();
@@ -70,7 +70,22 @@
             this.repository.DeleteInstructor(id, ref errors);
         }
 
+        public void AssignInstructorToClass(int instructor_id, int schedule_id, ref List<string> errors)
+        {
+            if (instructor_id == 0)
+            {
+                errors.Add("Invalid Instructor id");
+                throw new ArgumentException();
+            }
 
+            if (schedule_id == 0)
+            {
+                errors.Add("Invalid Instructor id");
+                throw new ArgumentException();
+            }
+
+            this.repository.AssignInstructorToClass(instructor_id, schedule_id, ref errors);
+        }
 
 
 

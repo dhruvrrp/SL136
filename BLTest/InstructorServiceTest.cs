@@ -114,5 +114,23 @@
             Assert.AreEqual(1, errors.Count);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void AssignInstructorErrorTest()
+        {
+            //// Arrange
+            var errors = new List<string>();
+
+            var mockRepository = new Mock<IInstructorRepository>();
+            var InstructorService = new InstructorService(mockRepository.Object);
+            var ScheduleService = new ScheduleService(); // new ScheduleService(mockRepository.Object);
+
+            //// Act
+            InstructorService.AssignInstructorToClass(0, 0, ref errors);
+
+            //// Assert
+            Assert.AreEqual(1, errors.Count);
+        }
+
     }
 }
