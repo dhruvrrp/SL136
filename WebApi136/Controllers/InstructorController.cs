@@ -43,11 +43,10 @@
         }
 
         [HttpPost]
-        public string AssignInstructorToClass(int instructor_id, int schedule_id )
+        public string AssignInstructorToClass(int instructor_id, int schedule_id)
         {
             this.service.AssignInstructorToClass(instructor_id, schedule_id, ref this.errors);
             return this.errors.Count == 0 ? "ok" : "Error occurred";
         }
-        
     }
 }
