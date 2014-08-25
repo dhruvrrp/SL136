@@ -2,12 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
     using IRepository;
     using POCO;
 
     public class StudentService
     {
         private readonly IStudentRepository repository;
+
+        public Regex ssn_regex = new Regex(@"(^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$)");
 
         public StudentService(IStudentRepository repository)
         {
@@ -19,6 +22,12 @@
             if (student == null)
             {
                 errors.Add("Student cannot be null");
+                throw new ArgumentException();
+            }
+
+            if (!ssn_regex.IsMatch(student.SSN))
+            {
+                errors.Add("Invalid social security number");
                 throw new ArgumentException();
             }
 
@@ -42,6 +51,12 @@
             if (string.IsNullOrEmpty(student.StudentId))
             {
                 errors.Add("Invalid student id");
+                throw new ArgumentException();
+            }
+
+            if (!ssn_regex.IsMatch(student.SSN))
+            {
+                errors.Add("Invalid social security number");
                 throw new ArgumentException();
             }
 
