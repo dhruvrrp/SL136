@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POCO", "POCO\POCO.csproj", "{A04CC3FC-B508-435D-AA7D-F25E5F172ACA}"
 EndProject
@@ -16,30 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi136", "WebApi136\WebApi136.csproj", "{B2ABB9B5-AA3E-4961-BEC2-C85289CDCDD3}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://192.168.8.112:8080/tfs/agluxe
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = BL\\Service.csproj
-		SccProjectName1 = BL
-		SccLocalPath1 = BL
-		SccProjectUniqueName2 = BLTest\\ServiceTest.csproj
-		SccProjectName2 = BLTest
-		SccLocalPath2 = BLTest
-		SccProjectUniqueName3 = DAL\\Repository.csproj
-		SccProjectName3 = DAL
-		SccLocalPath3 = DAL
-		SccProjectUniqueName4 = IDAL\\IRepository.csproj
-		SccProjectName4 = IDAL
-		SccLocalPath4 = IDAL
-		SccProjectUniqueName5 = POCO\\POCO.csproj
-		SccProjectName5 = POCO
-		SccLocalPath5 = POCO
-		SccProjectUniqueName6 = WebApi136\\WebApi136.csproj
-		SccProjectName6 = WebApi136
-		SccLocalPath6 = WebApi136
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

@@ -60,7 +60,7 @@
             studentService.InsertStudent(student, ref errors);
 
             //// Assert
-            Assert.AreEqual(1, errors.Count);
+            Assert.AreNotEqual(0, errors.Count);
         }
 
         [TestMethod]

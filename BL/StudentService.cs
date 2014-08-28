@@ -11,6 +11,8 @@
         private readonly IStudentRepository repository;
         private Regex emailCheck = new Regex(@"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$");
 
+        public Regex ssn_regex = new Regex(@"(^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$)");
+
         public StudentService(IStudentRepository repository)
         {
             this.repository = repository;
@@ -23,13 +25,19 @@
                 errors.Add("Student cannot be null");
                 throw new ArgumentException();
             }
-            
+
+            if (!ssn_regex.IsMatch(student.SSN))
+            {
+                errors.Add("Invalid social security number");
+                throw new ArgumentException();
+            }
+
             if (student.StudentId.Length < 5)
             {
                 errors.Add("Invalid student ID");
                 throw new ArgumentException();
             }
-            
+
             if (!emailCheck.IsMatch(student.Email))
             {
                 errors.Add("Invalid email");
@@ -50,6 +58,12 @@
             if (string.IsNullOrEmpty(student.StudentId))
             {
                 errors.Add("Invalid student id");
+                throw new ArgumentException();
+            }
+
+            if (!ssn_regex.IsMatch(student.SSN))
+            {
+                errors.Add("Invalid social security number");
                 throw new ArgumentException();
             }
 
