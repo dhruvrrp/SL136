@@ -26,6 +26,12 @@
                 throw new ArgumentException();
             }
 
+            if (student.SSN == null) 
+            {
+                errors.Add("Null ssn");
+                throw new ArgumentNullException();
+            }
+
             if (!ssn_regex.IsMatch(student.SSN))
             {
                 errors.Add("Invalid social security number");
