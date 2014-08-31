@@ -9,9 +9,7 @@
     public class StudentService
     {
         private readonly IStudentRepository repository;
-        private Regex emailCheck = new Regex(@"^([a-zA-z0-9_\-\.]+)@((\[0-9]{1,3}" + 
-            @"\.[0-9]{1-3}\-[0-9]{1,3}\-)|(([a-zA-Z0-9\-]+\" +
-            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+        private Regex emailCheck = new Regex(@"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$");
 
         public Regex ssn_regex = new Regex(@"(^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$)");
 
@@ -48,7 +46,7 @@
 
             if (!emailCheck.IsMatch(student.Email))
             {
-                errors.Add("Invalid student ID");
+                errors.Add("Invalid email");
                 throw new ArgumentException();
             }
 
@@ -83,7 +81,7 @@
 
             if (!emailCheck.IsMatch(student.Email))
             {
-                errors.Add("Invalid student ID");
+                errors.Add("Invalid email");
                 throw new ArgumentException();
             }
 
