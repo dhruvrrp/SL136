@@ -10,19 +10,19 @@
     using Service;
 
     [TestClass]
-    public class TAServiceTest
+    public class StaffServiceTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void InsertTAErrorTest()
+        public void InsertStaffErrorTest()
         {
             //// Arrange
             var errors = new List<string>();
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
+            var mockRepository = new Mock<IStaffRepository>();
+            var service = new StaffService(mockRepository.Object);
 
             //// Act
-            service.InsertTA(null, ref errors);
+            service.InsertStaff(null, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -30,16 +30,16 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void InsertTAErrorTest2()
+        public void InsertStaffErrorTest2()
         {
             //// Arranage
             var errors = new List<string>();
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
-            var teachingAssistant = new TA { FirstName = string.Empty };
+            var mockRepository = new Mock<IStaffRepository>();
+            var service = new StaffService(mockRepository.Object);
+            var teachingAssistant = new Staff { Email = string.Empty };
 
             //// Act
-            service.InsertTA(teachingAssistant, ref errors);
+            service.InsertStaff(teachingAssistant, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -47,15 +47,15 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TAErrorTest()
+        public void StaffErrorTest()
         {
             //// Arranage
             var errors = new List<string>();
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
+            var mockRepository = new Mock<IStaffRepository>();
+            var service = new StaffService(mockRepository.Object);
 
             //// Act
-            service.GetTA(0, ref errors);
+            service.GetStaff(0, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -63,17 +63,17 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void UpdateTAErrorTest2()
+        public void UpdateStaffErrorTest2()
         {
             //// Arrange
             var errors = new List<string>();
 
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
-            TA teachingAssistant = new TA { TAId = 0 };
+            var mockRepository = new Mock<IStaffRepository>();
+            var service = new StaffService(mockRepository.Object);
+            Staff teachingAssistant = new Staff { StaffId = 0 };
 
             //// Act
-            service.UpdateTA(teachingAssistant, ref errors);
+            service.UpdateStaff(teachingAssistant, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -81,17 +81,17 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void UpdateTAErrorTest()
+        public void UpdateStaffErrorTest()
         {
             //// Arrange
             var errors = new List<string>();
 
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
-            TA teachingAssistant = new TA();
+            var mockRepository = new Mock<IStaffRepository>();
+            var service = new StaffService(mockRepository.Object);
+            Staff teachingAssistant = new Staff();
 
             //// Act
-            service.UpdateTA(teachingAssistant, ref errors);
+            service.UpdateStaff(teachingAssistant, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
@@ -99,84 +99,16 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void DeleteTAErrorTest()
+        public void DeleteStaffErrorTest()
         {
             //// Arrange
             var errors = new List<string>();
 
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
+            var mockRepository = new Mock<IStaffRepository>();
+            var service = new StaffService(mockRepository.Object);
 
             //// Act
-            service.DeleteTA(0, ref errors);
-
-            //// Assert
-            Assert.AreEqual(1, errors.Count);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void AddTAtoClassErrorTest()
-        {
-            //// Arrange
-            var errors = new List<string>();
-
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
-
-            //// Act
-            service.AddTAtoClass(0, 101, ref errors);
-
-            //// Assert
-            Assert.AreEqual(1, errors.Count);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void AddTAtoClassErrorTest2()
-        {
-            //// Arrange
-            var errors = new List<string>();
-
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
-
-            //// Act
-            service.AddTAtoClass(101, 0, ref errors);
-
-            //// Assert
-            Assert.AreEqual(1, errors.Count);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void RemoveTAFromClassErrorTest()
-        {
-            //// Arrange
-            var errors = new List<string>();
-
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
-
-            //// Act
-            service.RemoveTAFromClass(101, 0, ref errors);
-
-            //// Assert
-            Assert.AreEqual(1, errors.Count);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void RemoveTAFromClassErrorTest2()
-        {
-            //// Arrange
-            var errors = new List<string>();
-
-            var mockRepository = new Mock<ITARepository>();
-            var service = new TAService(mockRepository.Object);
-
-            //// Act
-            service.RemoveTAFromClass(0, 101, ref errors);
+            service.DeleteStaff(0, ref errors);
 
             //// Assert
             Assert.AreEqual(1, errors.Count);
