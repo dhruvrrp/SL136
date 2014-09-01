@@ -15,6 +15,78 @@
         private const string DeleteCourseScheduleProcedure = "spDeleteCourseSchedule";
         private const string UpdateCourseScheduleProcedure = "spUpdateCourseSchedule";
         private const string InsertCourseScheduleProcedure = "spInsertCourseSchedule";
+        private const string GetScheduleYearsProcedure = "spGetScheduleYears";
+        private const string GetQuarterForYearProcedure = "spGetQuarterForYear";
+
+        public List<int> GetScheduleYear(ref List<string> errors)
+        {
+            var conn = new SqlConnection(ConnectionString);
+            var YearList = new List<int>();
+            try
+            {
+                var adapter = new SqlDataAdapter(GetScheduleYearsProcedure, conn)
+                {
+                    SelectCommand = { CommandType = CommandType.StoredProcedure }
+                };
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    YearList.Add(Convert.ToInt32(dataSet.Tables[0].Rows[i]["year"].ToString()));
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+            return YearList;
+        }
+
+
+        public List<string> GetQuarterForYear(int year, ref List<string> errors)
+        {
+            var conn = new SqlConnection(ConnectionString);
+            var QuarterList = new List<String>();
+            try
+            {
+                var adapter = new SqlDataAdapter(GetQuarterForYearProcedure, conn)
+                {
+                    SelectCommand = { CommandType = CommandType.StoredProcedure }
+                };
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@year", SqlDbType.Int));
+                adapter.SelectCommand.Parameters["@year"].Value = year;
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    QuarterList.Add(dataSet.Tables[0].Rows[i]["year"].ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+            return QuarterList;
+        }
+
 
         public void InsertCourseSchedule(Schedule schedule, ref List<string> errors)
         {

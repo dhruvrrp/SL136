@@ -18,5 +18,21 @@
             var errors = new List<string>();
             return service.GetScheduleList(year, quarter, ref errors);
         }
+
+        [HttpPost]
+        public List<int> GetScheduleYear(string quarter)
+        {
+            var service = new ScheduleService(new ScheduleRepository());
+            var errors = new List<string>();
+            return service.GetScheduleYear(ref errors);
+        }
+
+        [HttpPost]
+        public List<string> GetQuarterForYear(int year, string quarter)
+        {
+            var service = new ScheduleService(new ScheduleRepository());
+            var errors = new List<string>();
+            return service.GetQuarterForYear(year, ref errors);
+        }
     }
 }

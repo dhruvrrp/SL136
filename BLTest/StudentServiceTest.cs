@@ -69,7 +69,7 @@
             var errors = new List<string>();
             var mockRepository = new Mock<IStudentRepository>();
             var studentService = new StudentService(mockRepository.Object);
-            var student = new Student { SSN = string.Empty};
+            var student = new Student { SSN = string.Empty };
 
             //// Act
             studentService.InsertStudent(student, ref errors);
