@@ -20,7 +20,7 @@
         }
 
         [HttpPost]
-        public List<int> GetScheduleYear(string quarter)
+        public List<int> GetScheduleYear()
         {
             var service = new ScheduleService(new ScheduleRepository());
             var errors = new List<string>();
