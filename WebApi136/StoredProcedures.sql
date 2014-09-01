@@ -1,3 +1,28 @@
+Create PROCEDURE [dbo].[spScheduleYears]
+as
+begin
+
+	select
+		DISTINCT cs.year
+	from
+		course_schedule cs
+
+end
+
+Create PROCEDURE [dbo].[spScheduleQuarters]
+	@year int
+as
+begin
+
+	select
+		DISTINCT cs.quarter
+	from
+		course_schedule cs
+	where
+		cs.year = @year;
+
+end
+
 CREATE PROCEDURE [dbo].[assign_ta_to_class]
 	@taID int,
 	@scheduleID int
