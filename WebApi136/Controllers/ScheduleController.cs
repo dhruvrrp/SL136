@@ -28,7 +28,7 @@
         }
 
         [HttpPost]
-        public List<string> GetQuarterForYear(int year, string quarter)
+        public List<string> GetQuarterForYear(int year)
         {
             var service = new ScheduleService(new ScheduleRepository());
             var errors = new List<string>();
