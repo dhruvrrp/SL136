@@ -137,7 +137,7 @@
             this.repository.DropEnrolledSchedule(studentId, scheduleId, ref errors);
         }
 
-        public List<Enrollment> GetEnrollments(string studentId, ref List<string> errors)
+        public List<Course> GetEnrollments(string studentId, ref List<string> errors)
         {
             if (string.IsNullOrEmpty(studentId))
             {

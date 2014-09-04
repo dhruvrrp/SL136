@@ -6,9 +6,9 @@
 
     public interface IScheduleRepository
     {
-        public List<string> GetQuarterForYear(int year, ref List<string> errors);
+        List<string> GetQuarterForYear(int year, ref List<string> errors);
 
-        public List<int> GetScheduleYear(ref List<string> errors);
+        List<int> GetScheduleYear(ref List<string> errors);
 
         List<Schedule> GetScheduleList(string year, string quarter, ref List<string> errors);
 
