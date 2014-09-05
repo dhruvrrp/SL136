@@ -1,3 +1,20 @@
+ALTER PROCEDURE [dbo].[spGetEnrolledClasses]
+@student_id varchar(20)
+as
+begin
+
+select c.*
+from enrollment e, course_schedule s, course c
+where
+e.student_id = @student_id
+and
+e.schedule_id = s.schedule_id
+and
+c.course_id = s.course_id
+
+
+end
+
 Create PROCEDURE [dbo].[spScheduleYears]
 as
 begin

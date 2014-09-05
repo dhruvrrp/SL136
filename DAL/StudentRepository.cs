@@ -373,11 +373,11 @@
             return gradeList;
         }
 
-        public List<Enrollment> GetEnrollments(string studentId, ref List<string> errors)
+        public List<Course> GetEnrollments(string studentId, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
 
-            var enrollmentList = new List<POCO.Enrollment>();
+            var enrollmentList = new List<POCO.Course>();
           
             try
             {
@@ -402,11 +402,18 @@
 
                 for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
                 {
-                    var enrollment = new Enrollment();
-                    enrollment.StudentId = dataSet.Tables[0].Rows[i]["student_id"].ToString();
-                    enrollment.ScheduleId = (int)dataSet.Tables[0].Rows[i]["schedule_id"];
-                    enrollment.Grade = dataSet.Tables[0].Rows[i]["grade"].ToString();
-                    enrollmentList.Add(enrollment);
+                    var course = new Course
+                    {
+                        CourseId = dataSet.Tables[0].Rows[i]["course_id"].ToString(),
+                        Title = dataSet.Tables[0].Rows[i]["course_title"].ToString(),
+                        CourseLevel =
+                            (CourseLevel)
+                            Enum.Parse(
+                                typeof(CourseLevel),
+                                dataSet.Tables[0].Rows[i]["course_level"].ToString()),
+                        Description = dataSet.Tables[0].Rows[i]["course_description"].ToString()
+                    };
+                    enrollmentList.Add(course);
                 }
             }
             catch (Exception e)
