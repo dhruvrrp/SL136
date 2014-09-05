@@ -153,6 +153,7 @@
             var sum = 0.0f;
             if (string.IsNullOrEmpty(studentId))
             {
+                
                 errors.Add("Invalid student id");
                 throw new ArgumentException();
             }

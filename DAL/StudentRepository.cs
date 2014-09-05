@@ -344,9 +344,9 @@
                         CommandType = CommandType.StoredProcedure
                     }
                 };
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@student_id", SqlDbType.VarChar, 20));
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@studentID", SqlDbType.VarChar, 20));
 
-                adapter.SelectCommand.Parameters["@student_id"].Value = studentId;
+                adapter.SelectCommand.Parameters["@studentID"].Value = studentId;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
