@@ -35,6 +35,12 @@
             return this.errors.Count == 0 ? "ok" : "Error occurred";
         }
 
+        [HttpGet]
+        public List<Instructor> GetInstructorList()
+        {
+            return this.service.GetInstructorList(ref this.errors);
+        }
+
         [HttpPost]
         public string DeleteInstructor(int id)
         {

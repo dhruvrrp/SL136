@@ -14,6 +14,8 @@
 
         Instructor GetInstructorInfo(int instructor_id, ref List<string> errors);
 
+        List<Instructor> GetInstructorList(ref List<string> errors);
+
         void AssignInstructorToClass(int instructor_id, int scheduleID, ref List<string> errors);
     }
 }
