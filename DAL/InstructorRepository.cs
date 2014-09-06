@@ -16,6 +16,7 @@
         private const string UpdateInstructorProcedure = "spUpdateInstructor";
         private const string ViewInstructorProcedure = "spViewInstructor";
         private const string AssignInstructorToClassProcedure = "spAssignInstructorToSchedule";
+        private const string GetInstructorListProcedure = "spGetInstructorList";
 
         public void InsertInstructor(Instructor instructor, ref List<string> errors)
         {
@@ -121,6 +122,54 @@
             {
                 conn.Dispose();
             }
+        }
+
+        public List<Instructor> GetInstructorList(ref List<string> errors)
+        {
+            var conn = new SqlConnection(ConnectionString);
+            var instructorList = new List<Instructor>();
+
+            try
+            {
+                var adapter = new SqlDataAdapter(GetInstructorListProcedure, conn)
+                {
+                    SelectCommand =
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    }
+                };
+
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    var student = new Instructor
+                    {
+                        InstructorId = (int)dataSet.Tables[0].Rows[i]["instructor_id"],
+                        FirstName = dataSet.Tables[0].Rows[i]["first_name"].ToString(),
+                        LastName = dataSet.Tables[0].Rows[i]["last_name"].ToString(),
+                        Title = dataSet.Tables[0].Rows[i]["title"].ToString()
+
+                    };
+                    instructorList.Add(student);
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+
+            return instructorList;
         }
 
         public Instructor GetInstructorInfo(int id, ref List<string> errors)

@@ -59,6 +59,11 @@
             return this.repository.GetInstructorInfo(id, ref errors);
         }
 
+        public List<Instructor> GetInstructorList(ref List<string> errors)
+        {
+            return this.repository.GetInstructorList(ref errors);
+        }
+
         public void DeleteInstructor(int id, ref List<string> errors)
         {
             if (id == 0)
