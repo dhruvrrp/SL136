@@ -65,5 +65,11 @@
         {
             return this.service.CalculateGpa(id, ref this.errors);
         }
+
+        [HttpGet]
+        public List<Course> GetEnrollments(string studentID)
+        {
+            return this.service.GetEnrollments(studentID, ref this.errors);
+        }
     }
 }

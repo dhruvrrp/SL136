@@ -137,7 +137,7 @@
             this.repository.DropEnrolledSchedule(studentId, scheduleId, ref errors);
         }
 
-        public List<Enrollment> GetEnrollments(string studentId, ref List<string> errors)
+        public List<Course> GetEnrollments(string studentId, ref List<string> errors)
         {
             if (string.IsNullOrEmpty(studentId))
             {
@@ -153,6 +153,7 @@
             var sum = 0.0f;
             if (string.IsNullOrEmpty(studentId))
             {
+                
                 errors.Add("Invalid student id");
                 throw new ArgumentException();
             }
