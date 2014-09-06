@@ -15,7 +15,7 @@
         private const string DeleteCourseScheduleProcedure = "spDeleteCourseSchedule";
         private const string UpdateCourseScheduleProcedure = "spUpdateCourseSchedule";
         private const string InsertCourseScheduleProcedure = "spInsertCourseSchedule";
-        private const string GetScheduleYearsProcedure = "spGetScheduleYears";
+        private const string GetScheduleYearsProcedure = "spScheduleYears";
         private const string GetQuarterForYearProcedure = "spGetQuarterForYear";
 
         public List<int> GetScheduleYear(ref List<string> errors)
