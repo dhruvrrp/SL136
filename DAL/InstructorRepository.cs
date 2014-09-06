@@ -34,14 +34,14 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 50));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 50));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.VarChar, 50));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
+           //     adapter.SelectCommand.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
 
                 adapter.SelectCommand.Parameters["@instructor_id"].Value = instructor.InstructorId;
                 adapter.SelectCommand.Parameters["@first_name"].Value = instructor.FirstName;
                 adapter.SelectCommand.Parameters["@last_name"].Value = instructor.LastName;
                 adapter.SelectCommand.Parameters["@title"].Value = instructor.Title;
-                adapter.SelectCommand.Parameters["@email"].Value = instructor.Email;
-                adapter.SelectCommand.Parameters["@password"].Value = instructor.Password;
+        //        adapter.SelectCommand.Parameters["@email"].Value = instructor.Email;
+       //         adapter.SelectCommand.Parameters["@password"].Value = instructor.Password;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
@@ -69,15 +69,14 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 50));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 50));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.VarChar, 50));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.VarChar, 50));
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
+         //       adapter.SelectCommand.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 50));
 
                 adapter.SelectCommand.Parameters["@instructor_id"].Value = instructor.InstructorId;
                 adapter.SelectCommand.Parameters["@first_name"].Value = instructor.FirstName;
                 adapter.SelectCommand.Parameters["@last_name"].Value = instructor.LastName;
                 adapter.SelectCommand.Parameters["@title"].Value = instructor.Title;
-                adapter.SelectCommand.Parameters["@email"].Value = instructor.Email;
-                adapter.SelectCommand.Parameters["@password"].Value = instructor.Password;
+            //    adapter.SelectCommand.Parameters["@email"].Value = instructor.Email;
+              //  adapter.SelectCommand.Parameters["@password"].Value = instructor.Password;
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
