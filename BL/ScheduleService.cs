@@ -58,7 +58,7 @@
             return this.repository.GetScheduleList(year, quarter, ref errors);
         }
 
-        public List<int> GetScheduleYear(ref List<string> errors)
+        public List<string> GetScheduleYear(ref List<string> errors)
         {
             return this.repository.GetScheduleYear(ref errors);
         }

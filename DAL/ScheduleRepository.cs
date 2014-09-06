@@ -18,10 +18,10 @@
         private const string GetScheduleYearsProcedure = "spScheduleYears";
         private const string GetQuarterForYearProcedure = "spGetQuarterForYear";
 
-        public List<int> GetScheduleYear(ref List<string> errors)
+        public List<string> GetScheduleYear(ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            var YearList = new List<int>();
+            var YearList = new List<string>();
             try
             {
                 var adapter = new SqlDataAdapter(GetScheduleYearsProcedure, conn)
@@ -30,7 +30,9 @@
                 };
 
                 var dataSet = new DataSet();
+
                 adapter.Fill(dataSet);
+
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
                     return null;
@@ -38,7 +40,8 @@
 
                 for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
                 {
-                    YearList.Add(Convert.ToInt32(dataSet.Tables[0].Rows[i]["year"].ToString()));
+                    //YearList.Add(Convert.ToInt32(dataSet.Tables[0].Rows[i]["year"].ToString()));
+                    YearList.Add(dataSet.Tables[0].Rows[i]["year"].ToString());
                 }
             }
             catch (Exception e)
