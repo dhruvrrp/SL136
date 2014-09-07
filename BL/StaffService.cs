@@ -55,7 +55,7 @@
                 throw new ArgumentException();
             }
 
-            return this.repository.GetStaffDetail(id, ref errors);
+            return this.repository.GetStaff(id, ref errors);
         }
     }
 }

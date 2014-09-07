@@ -1,3 +1,5 @@
+/*
+
 Create PROCEDURE [dbo].[spUpdateStaffInfo]
 	@staff_id varchar(20),
 	@email varchar(64),
@@ -394,3 +396,5 @@ SELECT
 @last_name,
 @title
 end
+
+*/
