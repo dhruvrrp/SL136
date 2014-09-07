@@ -21,7 +21,7 @@
         public List<int> GetScheduleYear(ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            var YearList = new List<int>();
+            var yearList = new List<int>();
             try
             {
                 var adapter = new SqlDataAdapter(GetScheduleYearsProcedure, conn)
@@ -38,7 +38,7 @@
 
                 for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
                 {
-                    YearList.Add(Convert.ToInt32(dataSet.Tables[0].Rows[i]["year"].ToString()));
+                    yearList.Add(Convert.ToInt32(dataSet.Tables[0].Rows[i]["year"].ToString()));
                 }
             }
             catch (Exception e)
@@ -49,14 +49,14 @@
             {
                 conn.Dispose();
             }
-            return YearList;
-        }
 
+            return yearList;
+        }
 
         public List<string> GetQuarterForYear(int year, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            var QuarterList = new List<String>();
+            var quarterList = new List<string>();
             try
             {
                 var adapter = new SqlDataAdapter(GetQuarterForYearProcedure, conn)
@@ -71,9 +71,10 @@
                 {
                     return null;
                 }
+
                 for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
                 {
-                    QuarterList.Add(dataSet.Tables[0].Rows[i]["year"].ToString());
+                    quarterList.Add(dataSet.Tables[0].Rows[i]["year"].ToString());
                 }
             }
             catch (Exception e)
@@ -84,9 +85,9 @@
             {
                 conn.Dispose();
             }
-            return QuarterList;
-        }
 
+            return quarterList;
+        }
 
         public void InsertCourseSchedule(Schedule schedule, ref List<string> errors)
         {
