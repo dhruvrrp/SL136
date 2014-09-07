@@ -10,7 +10,7 @@
     {
         private readonly IStudentRepository repository;
         private Regex emailCheck = new Regex(@"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$");
-
+        private Regex nameCheck = new Regex(@"^[a-zA-Z]+$");
         private Regex ssnregex = new Regex(@"(^\d{3}-?\d{2}-?\d{4}$|^XXX-XX-XXXX$)");
 
         public StudentService(IStudentRepository repository)
@@ -30,6 +30,18 @@
             {
                 errors.Add("Null ssn");
                 throw new ArgumentNullException();
+            }
+
+            if (this.nameCheck.IsMatch(student.FirstName))
+            {
+                errors.Add("Invalid first name");
+                throw new ArgumentException();
+            }
+
+            if (this.nameCheck.IsMatch(student.LastName))
+            {
+                errors.Add("Invalid last name");
+                throw new ArgumentException();
             }
 
             if (!this.ssnregex.IsMatch(student.SSN))
@@ -70,6 +82,18 @@
             if (!this.ssnregex.IsMatch(student.SSN))
             {
                 errors.Add("Invalid social security number");
+                throw new ArgumentException();
+            }
+
+            if (this.nameCheck.IsMatch(student.FirstName))
+            {
+                errors.Add("Invalid first name");
+                throw new ArgumentException();
+            }
+
+            if (this.nameCheck.IsMatch(student.LastName))
+            {
+                errors.Add("Invalid last name");
                 throw new ArgumentException();
             }
 
@@ -153,7 +177,6 @@
             var sum = 0.0f;
             if (string.IsNullOrEmpty(studentId))
             {
-                
                 errors.Add("Invalid student id");
                 throw new ArgumentException();
             }

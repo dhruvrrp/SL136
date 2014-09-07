@@ -2,12 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
     using IRepository;
     using POCO;
 
     public class InstructorService
     {
         private readonly IInstructorRepository repository;
+        private Regex nameCheck = new Regex(@"^[a-zA-Z]+$");
 
         public InstructorService(IInstructorRepository repository)
         {
@@ -19,6 +21,18 @@
             if (instructor == null)
             {
                 errors.Add("Instructor cannot be null");
+                throw new ArgumentException();
+            }
+
+            if (this.nameCheck.IsMatch(instructor.FirstName))
+            {
+                errors.Add("Invalid first name");
+                throw new ArgumentException();
+            }
+
+            if (this.nameCheck.IsMatch(instructor.LastName))
+            {
+                errors.Add("Invalid last name");
                 throw new ArgumentException();
             }
 
@@ -36,6 +50,18 @@
             if (instructor == null)
             {
                 errors.Add("Instructor cannot be null");
+                throw new ArgumentException();
+            }
+
+            if (this.nameCheck.IsMatch(instructor.FirstName))
+            {
+                errors.Add("Invalid first name");
+                throw new ArgumentException();
+            }
+
+            if (this.nameCheck.IsMatch(instructor.LastName))
+            {
+                errors.Add("Invalid last name");
                 throw new ArgumentException();
             }
 

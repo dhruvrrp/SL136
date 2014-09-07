@@ -30,12 +30,6 @@
                 throw new ArgumentException();
             }
 
-            if (!this.isNumeric.IsMatch(course.CourseId))
-            {
-               errors.Add("Invalid course id");
-                throw new ArgumentException();
-            }
-
             this.repository.InsertCourse(course, ref errors);
         }
 
@@ -53,24 +47,12 @@
                 throw new ArgumentException();
             }
 
-            if (!this.isNumeric.IsMatch(course.CourseId))
-            {
-                errors.Add("Invalid course id");
-                throw new ArgumentException();
-            }
-
             this.repository.UpdateCourse(course, ref errors);
         }
 
         public void DeleteCourse(string id, ref List<string> errors)
         {
             if (string.IsNullOrEmpty(id))
-            {
-                errors.Add("Invalid course id");
-                throw new ArgumentException();
-            }
-
-            if (!this.isNumeric.IsMatch(id))
             {
                 errors.Add("Invalid course id");
                 throw new ArgumentException();
