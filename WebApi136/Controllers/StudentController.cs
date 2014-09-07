@@ -49,8 +49,10 @@
         }
 
         [HttpPost]
-        public void EnrollSchedule(string studentId, int scheduleId)
+        public void EnrollSchedule(Enrollment enroll)
         {
+            string studentId = enroll.StudentId;
+            int scheduleId = enroll.ScheduleId;
             this.service.EnrollSchedule(studentId, scheduleId, ref this.errors);
         }
 
