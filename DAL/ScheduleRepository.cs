@@ -15,13 +15,14 @@
         private const string DeleteCourseScheduleProcedure = "spDeleteCourseSchedule";
         private const string UpdateCourseScheduleProcedure = "spUpdateCourseSchedule";
         private const string InsertCourseScheduleProcedure = "spInsertCourseSchedule";
-        private const string GetScheduleYearsProcedure = "spGetScheduleYears";
+        private const string GetScheduleYearsProcedure = "spScheduleYears";
         private const string GetQuarterForYearProcedure = "spGetQuarterForYear";
+        private const string GetQuartersProcedure = "spScheduleQuartersFull";
 
-        public List<int> GetScheduleYear(ref List<string> errors)
+        public List<string> GetScheduleYear(ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            var yearList = new List<int>();
+            var YearList = new List<string>();
             try
             {
                 var adapter = new SqlDataAdapter(GetScheduleYearsProcedure, conn)
@@ -30,7 +31,9 @@
                 };
 
                 var dataSet = new DataSet();
+
                 adapter.Fill(dataSet);
+
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
                     return null;
@@ -38,7 +41,8 @@
 
                 for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
                 {
-                    yearList.Add(Convert.ToInt32(dataSet.Tables[0].Rows[i]["year"].ToString()));
+                    //YearList.Add(Convert.ToInt32(dataSet.Tables[0].Rows[i]["year"].ToString()));
+                    YearList.Add(dataSet.Tables[0].Rows[i]["year"].ToString());
                 }
             }
             catch (Exception e)
@@ -49,14 +53,49 @@
             {
                 conn.Dispose();
             }
+            return YearList;
+        }
 
-            return yearList;
+
+        public List<string> GetScheduleQuarters(ref List<string> errors)
+        {
+            var conn = new SqlConnection(ConnectionString);
+            var QuarterList = new List<String>();
+            try
+            {
+                var adapter = new SqlDataAdapter(GetQuartersProcedure, conn)
+                {
+                    SelectCommand = { CommandType = CommandType.StoredProcedure }
+                };
+            
+                var dataSet = new DataSet();
+
+                adapter.Fill(dataSet);
+
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return null;
+                }
+                for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+                {
+                    QuarterList.Add(dataSet.Tables[0].Rows[i]["quarter"].ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                errors.Add("Error: " + e);
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+            return QuarterList;
         }
 
         public List<string> GetQuarterForYear(int year, ref List<string> errors)
         {
             var conn = new SqlConnection(ConnectionString);
-            var quarterList = new List<string>();
+            var QuarterList = new List<String>();
             try
             {
                 var adapter = new SqlDataAdapter(GetQuarterForYearProcedure, conn)
@@ -71,10 +110,9 @@
                 {
                     return null;
                 }
-
                 for (var i = 0; i < dataSet.Tables[0].Rows.Count; i++)
                 {
-                    quarterList.Add(dataSet.Tables[0].Rows[i]["year"].ToString());
+                    QuarterList.Add(dataSet.Tables[0].Rows[i]["year"].ToString());
                 }
             }
             catch (Exception e)
@@ -85,9 +123,9 @@
             {
                 conn.Dispose();
             }
-
-            return quarterList;
+            return QuarterList;
         }
+
 
         public void InsertCourseSchedule(Schedule schedule, ref List<string> errors)
         {
@@ -209,7 +247,7 @@
                 if (year.Length > 0)
                 {
                     adapter.SelectCommand.Parameters.Add(new SqlParameter("@year", SqlDbType.Int));
-                    adapter.SelectCommand.Parameters["@year"].Value = year;
+                    adapter.SelectCommand.Parameters["@year"].Value = Convert.ToDecimal(year);
                 }
 
                 if (quarter.Length > 0)
