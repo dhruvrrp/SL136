@@ -32,13 +32,13 @@
                 throw new ArgumentNullException();
             }
 
-            if (this.nameCheck.IsMatch(student.FirstName))
+            if (!this.nameCheck.IsMatch(student.FirstName))
             {
                 errors.Add("Invalid first name");
                 throw new ArgumentException();
             }
 
-            if (this.nameCheck.IsMatch(student.LastName))
+            if (!this.nameCheck.IsMatch(student.LastName))
             {
                 errors.Add("Invalid last name");
                 throw new ArgumentException();
