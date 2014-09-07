@@ -52,6 +52,7 @@
     <Compile Include="Logon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule.cs" />
+    <Compile Include="Staff.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="TA.cs" />
   </ItemGroup>

@@ -61,6 +61,7 @@
     <Compile Include="Award\Resolver.cs" />
     <Compile Include="AuthorizeService.cs" />
     <Compile Include="AdminService.cs" />
+    <Compile Include="StaffService.cs" />
     <Compile Include="CourseService.cs" />
     <Compile Include="InstructorService.cs" />
     <Compile Include="ScheduleService.cs" />
