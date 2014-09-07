@@ -6,12 +6,12 @@
     using POCO;
 
     using Repository;
-
+ 
     using Service;
 
     public class ScheduleController : ApiController
     {
-        [HttpPost]
+        [HttpGet]
         public List<Schedule> GetScheduleList(string year, string quarter)
         {
             var service = new ScheduleService(new ScheduleRepository());
@@ -19,11 +19,12 @@
             return service.GetScheduleList(year, quarter, ref errors);
         }
 
-        [HttpPost]
-        public List<int> GetScheduleYear()
+        [HttpGet]
+        public List<string> GetScheduleYear()
         {
             var service = new ScheduleService(new ScheduleRepository());
             var errors = new List<string>();
+
             return service.GetScheduleYear(ref errors);
         }
 
@@ -33,6 +34,15 @@
             var service = new ScheduleService(new ScheduleRepository());
             var errors = new List<string>();
             return service.GetQuarterForYear(year, ref errors);
+        }
+
+        [HttpGet]
+        public List<string> GetScheduleQuarters()
+        {
+            var service = new ScheduleService(new ScheduleRepository());
+            var errors = new List<string>();
+
+            return service.GetScheduleQuarters(ref errors);
         }
     }
 }

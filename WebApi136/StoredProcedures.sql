@@ -15,6 +15,16 @@ c.course_id = s.course_id
 
 end
 
+Create PROCEDURE [dbo].[spScheduleQuartersFull]
+as
+begin
+	select
+		DISTINCT cs.quarter
+	from
+		course_schedule cs
+end
+
+
 Create PROCEDURE [dbo].[spScheduleYears]
 as
 begin
@@ -312,4 +322,49 @@ begin
 SELECT first_name, last_name, teaching_assistant.ta_id
 from teaching_assistant, ta_assignment
 where ta_assignment.schedule_id = @scheduleID
+end
+
+
+CREATE PROCEDURE spViewInstructor
+@instructor_id int
+as
+begin
+SELECT *
+FROM instructor
+WHERE instructor_id = @instructor_id
+end
+
+CREATE PROCEDURE spUpdateInstructor
+@instructor_id int,
+@first_name varchar(50),
+@last_name varchar(50),
+@title varchar(50)
+as
+begin
+UPDATE instructor
+SET first_name = @first_name,
+last_name = @last_name,
+title = @title
+WHERE instructor_id = @instructor_id
+end
+
+CREATE PROCEDURE spInsertInstructor
+@instructor_id int,
+@first_name varchar(50),
+@last_name varchar(50),
+@title varchar(50)
+as
+begin
+INSERT instructor
+(
+instructor_id,
+first_name,
+last_name,
+title
+)
+SELECT
+@instructor_id,
+@first_name,
+@last_name,
+@title
 end
