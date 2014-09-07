@@ -67,5 +67,10 @@
         {
             return this.repository.GetQuarterForYear(year, ref errors);
         }
+
+        public List<string> GetScheduleQuarters(ref List<string> errors)
+        {
+            return this.repository.GetScheduleQuarters(ref errors);
+        }
     }
 }

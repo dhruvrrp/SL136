@@ -15,6 +15,16 @@ c.course_id = s.course_id
 
 end
 
+Create PROCEDURE [dbo].[spScheduleQuartersFull]
+as
+begin
+	select
+		DISTINCT cs.quarter
+	from
+		course_schedule cs
+end
+
+
 Create PROCEDURE [dbo].[spScheduleYears]
 as
 begin

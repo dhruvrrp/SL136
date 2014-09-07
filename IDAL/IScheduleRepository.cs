@@ -8,6 +8,8 @@
     {
         List<string> GetQuarterForYear(int year, ref List<string> errors);
 
+        List<string> GetScheduleQuarters(ref List<string> errors);
+
         List<string> GetScheduleYear(ref List<string> errors);
 
         List<Schedule> GetScheduleList(string year, string quarter, ref List<string> errors);

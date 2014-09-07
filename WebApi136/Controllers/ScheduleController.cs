@@ -11,7 +11,7 @@
 
     public class ScheduleController : ApiController
     {
-        [HttpPost]
+        [HttpGet]
         public List<Schedule> GetScheduleList(string year, string quarter)
         {
             var service = new ScheduleService(new ScheduleRepository());
@@ -34,6 +34,15 @@
             var service = new ScheduleService(new ScheduleRepository());
             var errors = new List<string>();
             return service.GetQuarterForYear(year, ref errors);
+        }
+
+        [HttpGet]
+        public List<string> GetScheduleQuarters()
+        {
+            var service = new ScheduleService(new ScheduleRepository());
+            var errors = new List<string>();
+
+            return service.GetScheduleQuarters(ref errors);
         }
     }
 }
