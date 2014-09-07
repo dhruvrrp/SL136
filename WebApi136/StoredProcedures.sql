@@ -1,3 +1,31 @@
+/*
+
+Create PROCEDURE [dbo].[spUpdateStaffInfo]
+	@staff_id varchar(20),
+	@email varchar(64),
+	@password varchar(64)
+
+	as 
+	begin
+
+	update staff
+	set
+		email = @email,
+		password = @password
+	where
+		staff_id = @staff_id
+	end
+
+Create PROCEDURE [dbo].[spGetStaffInfo]
+	@staff_id varchar(20)
+
+	as begin
+
+	select * from staff
+	where staff_id = @staff_id
+
+	end
+
 ALTER PROCEDURE [dbo].[spGetEnrolledClasses]
 @student_id varchar(20)
 as
@@ -368,3 +396,5 @@ SELECT
 @last_name,
 @title
 end
+
+*/
