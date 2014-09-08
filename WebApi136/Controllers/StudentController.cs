@@ -57,8 +57,10 @@
         }
 
         [HttpPost]
-        public void DropEnrolledSchedule(string studentId, int scheduleId)
+        public void DropEnrolledSchedule(Enrollment enroll)
         {
+            string studentId = enroll.StudentId;
+            int scheduleId = enroll.ScheduleId;
             this.service.DropEnrolledSchedule(studentId, scheduleId, ref this.errors);
         }
 
