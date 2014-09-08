@@ -27,11 +27,9 @@
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 64));
                 adapter.SelectCommand.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 64));
 
-
                 adapter.SelectCommand.Parameters["@staff_id"].Value = staff.StaffId;
                 adapter.SelectCommand.Parameters["@email"].Value = staff.Email;
                 adapter.SelectCommand.Parameters["@password"].Value = staff.Password;
-
 
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
